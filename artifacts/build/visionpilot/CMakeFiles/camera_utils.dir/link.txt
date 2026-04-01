@@ -1,2 +1,0 @@
-/usr/bin/llvm-ar-20 qc libcamera_utils.a CMakeFiles/camera_utils.dir/src/camera/camera_utils.cpp.o
-/usr/bin/llvm-ranlib-20 libcamera_utils.a

@@ -1,19 +1,66 @@
 #!/usr/bin/env bash
-# Copies build artifacts to the mounted /artifacts volume and exits.
+# =============================================================================
+# entrypoint.sh
+# Cleans the pre-baked build, reruns under kwinject so Klocwork can intercept
+# all compiler calls, then runs kwbuildproject to produce kw_tables.
+# Klocwork client must be mounted from host at /opt/klocwork.
+# =============================================================================
 set -euo pipefail
 
+export PATH=/opt/klocwork/bin:$PATH
+export ONNXRUNTIME_ROOT=/opt/onnxruntime
+export CC=/usr/bin/clang-20
+export CXX=/usr/bin/clang++-20
+
+# Verify Klocwork is reachable
+if ! command -v kwinject &> /dev/null; then
+    echo "ERROR: kwinject not found at /opt/klocwork/bin"
+    echo "Make sure to mount the Klocwork client:"
+    echo "  -v /opt/klocwork:/opt/klocwork"
+    exit 1
+fi
+
 echo "====================================================="
-echo " Copying artifacts to /artifacts ..."
+echo " Klocwork version: $(kwcheck --version 2>/dev/null || echo unknown)"
+echo " Clang version:    $(clang --version | head -1)"
 echo "====================================================="
 
-# compile_commands.json — primary Klocwork input
-cp /autoware_ws/build/compile_commands.json /artifacts/compile_commands.json
+# Source ROS
+source /opt/ros/kilted/setup.sh
 
-# Full build tree — Klocwork may need headers/binaries for deep analysis
-cp -r /autoware_ws/build /artifacts/build
+echo ""
+echo "====================================================="
+echo " Step 1 -- Clean pre-baked build so kwinject gets"
+echo "           fresh compiler calls"
+echo "====================================================="
+cd /autoware_ws
+rm -rf build/ install/ log/
+echo "  Clean done"
 
-# Build log for reference
-cp /autoware_ws/build.log /artifacts/build.log
+echo ""
+echo "====================================================="
+echo " Step 2 -- kwinject: tracing build with Klocwork"
+echo "====================================================="
+kwinject \
+    --output /autoware_ws/kwinject.out \
+    colcon build \
+        --base-paths src/autoware_vision_pilot/VisionPilot/Production_Releases/0.9 \
+        --symlink-install \
+        --cmake-args \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_C_COMPILER=/usr/bin/clang-20 \
+            -DCMAKE_CXX_COMPILER=/usr/bin/clang++-20 \
+    2>&1 | tee /artifacts/build.log
+
+echo ""
+echo "====================================================="
+echo " Step 3 -- kwbuildproject: building Klocwork tables"
+echo "====================================================="
+kwbuildproject \
+    --tables-directory /artifacts/kw_tables \
+    --force \
+    /autoware_ws/kwinject.out \
+    2>&1 | tee -a /artifacts/build.log
 
 echo ""
 echo "====================================================="
@@ -21,6 +68,5 @@ echo " Done. Artifacts written to /artifacts:"
 echo "====================================================="
 ls -lh /artifacts/
 echo ""
-echo " Feed to Klocwork with:"
-echo "   kwbuildproject --compile-commands /artifacts/compile_commands.json \\"
-echo "       --tables-directory ./kw_tables"
+echo " Load results into Klocwork server with:"
+echo "   kwadmin --url http://<kw-server>:<port> load visionpilot /artifacts/kw_tables"

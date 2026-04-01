@@ -1,2 +1,0 @@
-/usr/bin/llvm-ar-20 qc libvisionpilot_inference.a CMakeFiles/visionpilot_inference.dir/src/inference/onnxruntime_session.cpp.o CMakeFiles/visionpilot_inference.dir/src/inference/onnxruntime_engine.cpp.o CMakeFiles/visionpilot_inference.dir/src/inference/autosteer_engine.cpp.o
-/usr/bin/llvm-ranlib-20 libvisionpilot_inference.a

@@ -1,2 +1,0 @@
-/usr/bin/llvm-ar-20 qc libvisionpilot_publisher.a CMakeFiles/visionpilot_publisher.dir/src/publisher/visionpilot_shared_state.cpp.o
-/usr/bin/llvm-ranlib-20 libvisionpilot_publisher.a

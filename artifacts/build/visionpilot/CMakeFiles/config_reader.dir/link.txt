@@ -1,2 +1,0 @@
-/usr/bin/llvm-ar-20 qc libconfig_reader.a CMakeFiles/config_reader.dir/src/config/config_reader.cpp.o
-/usr/bin/llvm-ranlib-20 libconfig_reader.a

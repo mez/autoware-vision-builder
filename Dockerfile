@@ -1,17 +1,20 @@
 # =============================================================================
-# Dockerfile — autoware_vision_pilot v0.9 build artifact generator
+# Dockerfile — autoware_vision_pilot v0.9 Klocwork build environment
 #
-# Builds autoware_vision_pilot v0.9 with Clang 20 and ROS 2 Kilted,
-# then copies compile_commands.json and the build tree to /artifacts.
-# Container exits when done.
+# Provides a clean build environment for kwinject to intercept compiler calls.
+# The actual build and Klocwork analysis happen at runtime via entrypoint.sh.
+# Klocwork client must be installed on the HOST and mounted at runtime.
 #
 # Usage:
 #   docker build -t visionpilot-build .
-#   docker run --rm -v $(pwd)/artifacts:/artifacts visionpilot-build
+#   docker run --rm \
+#     -v /opt/klocwork:/opt/klocwork \
+#     -v $(pwd)/artifacts:/artifacts \
+#     visionpilot-build
 #
 # Output:
-#   artifacts/compile_commands.json   <-- feed this to kwbuildproject
-#   artifacts/build/                  <-- built binaries
+#   artifacts/kw_tables/    <-- load into Klocwork server with kwadmin
+#   artifacts/build.log     <-- build log
 # =============================================================================
 
 FROM ubuntu:24.04
@@ -26,6 +29,9 @@ ENV ONNXRUNTIME_ROOT=/opt/onnxruntime
 ENV CC=/usr/bin/clang-20
 ENV CXX=/usr/bin/clang++-20
 
+# Klocwork client is mounted from host at runtime — just add to PATH here
+ENV PATH=/opt/klocwork/bin:$PATH
+
 # -----------------------------------------------------------------------------
 # 1. Locale + base tools
 # -----------------------------------------------------------------------------
@@ -35,6 +41,7 @@ RUN apt-get update && apt-get install -y \
     git git-lfs build-essential cmake ninja-build \
     python3-pip python3-venv python3-dev \
     libeigen3-dev libopencv-dev pkg-config \
+    libboost-all-dev \
     && locale-gen en_US en_US.UTF-8 \
     && update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 \
     && rm -rf /var/lib/apt/lists/*
@@ -88,7 +95,7 @@ RUN wget -qO /tmp/onnxruntime.tgz \
     && rm /tmp/onnxruntime.tgz
 
 # -----------------------------------------------------------------------------
-# 5. Python deps
+# 5. Python deps (no torch -- not needed for C++ static analysis)
 # -----------------------------------------------------------------------------
 RUN pip3 install --break-system-packages --ignore-installed \
     opencv-python-headless onnxruntime scikit-learn matplotlib pyyaml
@@ -124,26 +131,18 @@ RUN . /opt/ros/${ROS_DISTRO}/setup.sh \
         || true
 
 # -----------------------------------------------------------------------------
-# 9. Build
+# 9. Pre-bake build — validates everything compiles cleanly at image build time
 # -----------------------------------------------------------------------------
 WORKDIR /autoware_ws
-RUN . /opt/ros/${ROS_DISTRO}/setup.sh \
-    && colcon build \
-        --base-paths src/autoware_vision_pilot/VisionPilot/Production_Releases/0.9 \
-        --symlink-install \
-        --cmake-args \
-            -DCMAKE_BUILD_TYPE=Release \
-            -DCMAKE_C_COMPILER=/usr/bin/clang-${CLANG_VER} \
-            -DCMAKE_CXX_COMPILER=/usr/bin/clang++-${CLANG_VER} \
-            -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
-        2>&1 | tee /autoware_ws/build.log
+RUN . /opt/ros/${ROS_DISTRO}/setup.sh     && colcon build         --base-paths src/autoware_vision_pilot/VisionPilot/Production_Releases/0.9         --symlink-install         --cmake-args             -DCMAKE_BUILD_TYPE=Release             -DCMAKE_C_COMPILER=/usr/bin/clang-${CLANG_VER}             -DCMAKE_CXX_COMPILER=/usr/bin/clang++-${CLANG_VER}         2>&1 | tee /tmp/prebuild.log     && echo "Pre-build successful"
 
 # -----------------------------------------------------------------------------
-# 10. Entrypoint — copy artifacts and exit
+# 10. Entrypoint — cleans build, reruns under kwinject at container start
 # -----------------------------------------------------------------------------
 RUN mkdir -p /artifacts
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
+WORKDIR /autoware_ws
 ENTRYPOINT ["/entrypoint.sh"]

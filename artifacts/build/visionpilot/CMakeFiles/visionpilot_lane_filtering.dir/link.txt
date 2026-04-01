@@ -1,2 +1,0 @@
-/usr/bin/llvm-ar-20 qc libvisionpilot_lane_filtering.a CMakeFiles/visionpilot_lane_filtering.dir/src/lane_filtering/lane_filter.cpp.o
-/usr/bin/llvm-ranlib-20 libvisionpilot_lane_filtering.a

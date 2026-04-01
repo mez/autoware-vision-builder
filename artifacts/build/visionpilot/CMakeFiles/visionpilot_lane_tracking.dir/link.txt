@@ -1,2 +1,0 @@
-/usr/bin/llvm-ar-20 qc libvisionpilot_lane_tracking.a CMakeFiles/visionpilot_lane_tracking.dir/src/lane_tracking/lane_tracking.cpp.o
-/usr/bin/llvm-ranlib-20 libvisionpilot_lane_tracking.a

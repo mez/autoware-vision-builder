@@ -1,2 +1,0 @@
-/usr/bin/llvm-ar-20 qc libcan_drivers.a CMakeFiles/can_drivers.dir/src/drivers/can_interface.cpp.o
-/usr/bin/llvm-ranlib-20 libcan_drivers.a

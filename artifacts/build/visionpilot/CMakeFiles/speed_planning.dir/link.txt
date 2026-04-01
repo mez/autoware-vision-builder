@@ -1,2 +1,0 @@
-/usr/bin/llvm-ar-20 qc libspeed_planning.a CMakeFiles/speed_planning.dir/src/speed_planning/speed_planning.cpp.o
-/usr/bin/llvm-ranlib-20 libspeed_planning.a

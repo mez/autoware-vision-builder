@@ -1,2 +1,0 @@
-/usr/bin/llvm-ar-20 qc libpath_planning.a CMakeFiles/path_planning.dir/src/path_planning/estimator.cpp.o CMakeFiles/path_planning.dir/src/path_planning/poly_fit.cpp.o CMakeFiles/path_planning.dir/src/path_planning/path_finder.cpp.o
-/usr/bin/llvm-ranlib-20 libpath_planning.a

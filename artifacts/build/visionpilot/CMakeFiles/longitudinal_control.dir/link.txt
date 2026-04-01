@@ -1,2 +1,0 @@
-/usr/bin/llvm-ar-20 qc liblongitudinal_control.a CMakeFiles/longitudinal_control.dir/src/longitudinal/pi_controller.cpp.o
-/usr/bin/llvm-ranlib-20 liblongitudinal_control.a

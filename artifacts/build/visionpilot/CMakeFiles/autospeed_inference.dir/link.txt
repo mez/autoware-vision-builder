@@ -1,2 +1,0 @@
-/usr/bin/llvm-ar-20 qc libautospeed_inference.a CMakeFiles/autospeed_inference.dir/src/inference/autospeed/onnxruntime_session.cpp.o CMakeFiles/autospeed_inference.dir/src/inference/autospeed/onnxruntime_engine.cpp.o
-/usr/bin/llvm-ranlib-20 libautospeed_inference.a
