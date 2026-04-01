@@ -1,0 +1,1 @@
+['-DCMAKE_BUILD_TYPE=Release', '-DCMAKE_C_COMPILER=/usr/bin/clang-20', '-DCMAKE_CXX_COMPILER=/usr/bin/clang++-20', '-DCMAKE_EXPORT_COMPILE_COMMANDS=ON']

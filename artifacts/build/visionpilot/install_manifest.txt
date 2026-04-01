@@ -1,0 +1,5 @@
+/autoware_ws/install/visionpilot/bin/visionpilot
+/autoware_ws/install/visionpilot/share/visionpilot/visionpilot.conf
+/autoware_ws/install/visionpilot/share/visionpilot/images/wheel_green.png
+/autoware_ws/install/visionpilot/share/visionpilot/images/wheel_white.png
+/autoware_ws/install/visionpilot/share/visionpilot/onnxruntime

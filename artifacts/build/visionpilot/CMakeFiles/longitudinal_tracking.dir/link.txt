@@ -1,0 +1,2 @@
+/usr/bin/llvm-ar-20 qc liblongitudinal_tracking.a CMakeFiles/longitudinal_tracking.dir/src/tracking/object_finder.cpp.o CMakeFiles/longitudinal_tracking.dir/src/tracking/kalman_filter.cpp.o CMakeFiles/longitudinal_tracking.dir/src/tracking/cipo_history.cpp.o CMakeFiles/longitudinal_tracking.dir/src/tracking/cipo_utils.cpp.o CMakeFiles/longitudinal_tracking.dir/src/tracking/tracking_utils.cpp.o CMakeFiles/longitudinal_tracking.dir/src/tracking/feature_matching_utils.cpp.o
+/usr/bin/llvm-ranlib-20 liblongitudinal_tracking.a

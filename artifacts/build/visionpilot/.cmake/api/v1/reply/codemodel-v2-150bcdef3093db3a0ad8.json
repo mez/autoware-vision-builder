@@ -1,0 +1,205 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Release-c8bc80491746ab36fac1.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16
+					]
+				}
+			],
+			"name" : "Release",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "visionpilot",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "autospeed_inference::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-autospeed_inference-Release-df4f6e6d4acc787ed371.json",
+					"name" : "autospeed_inference",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "camera_utils::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-camera_utils-Release-bb54ec006fffdf838bfc.json",
+					"name" : "camera_utils",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "can_drivers::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-can_drivers-Release-af4d54724c35dca568fb.json",
+					"name" : "can_drivers",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "config_reader::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-config_reader-Release-03a91656451bb3ef75bb.json",
+					"name" : "config_reader",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "longitudinal_control::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-longitudinal_control-Release-3366fc71adacd7d6cf05.json",
+					"name" : "longitudinal_control",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "longitudinal_tracking::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-longitudinal_tracking-Release-84aa04f0e86266cf7c65.json",
+					"name" : "longitudinal_tracking",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "path_planning::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-path_planning-Release-53d2894a3456a6ee488f.json",
+					"name" : "path_planning",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "speed_planning::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-speed_planning-Release-6f2c5f63b8c13f1af979.json",
+					"name" : "speed_planning",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "steering_control::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-steering_control-Release-b1f3a50b56e5498d6815.json",
+					"name" : "steering_control",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "test_autosteer::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-test_autosteer-Release-f5d58dd355f8eb31c5f3.json",
+					"name" : "test_autosteer",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "visionpilot::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-visionpilot-Release-d8ee0901e6ee453dc732.json",
+					"name" : "visionpilot",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "visionpilot_inference::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-visionpilot_inference-Release-2e4166de6aa51017acef.json",
+					"name" : "visionpilot_inference",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "visionpilot_lane_filtering::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-visionpilot_lane_filtering-Release-a3d7a0f920c771cb3be1.json",
+					"name" : "visionpilot_lane_filtering",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "visionpilot_lane_tracking::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-visionpilot_lane_tracking-Release-9157db7087b05e85af11.json",
+					"name" : "visionpilot_lane_tracking",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "visionpilot_publisher::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-visionpilot_publisher-Release-8e79067f1b012db5176e.json",
+					"name" : "visionpilot_publisher",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "visionpilot_visualization::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-visionpilot_visualization-Release-87095a31162a0bd9b4ca.json",
+					"name" : "visionpilot_visualization",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "visionpilot_visualization_long::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-visionpilot_visualization_long-Release-4c848870f2ca52427a17.json",
+					"name" : "visionpilot_visualization_long",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/autoware_ws/build/visionpilot",
+		"source" : "/autoware_ws/src/autoware_vision_pilot/VisionPilot/Production_Releases/0.9"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

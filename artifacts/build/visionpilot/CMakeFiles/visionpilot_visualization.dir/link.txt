@@ -1,0 +1,2 @@
+/usr/bin/llvm-ar-20 qc libvisionpilot_visualization.a CMakeFiles/visionpilot_visualization.dir/src/visualization/visualize.cpp.o
+/usr/bin/llvm-ranlib-20 libvisionpilot_visualization.a

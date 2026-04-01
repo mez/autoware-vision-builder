@@ -1,0 +1,2 @@
+/usr/bin/llvm-ar-20 qc libsteering_control.a CMakeFiles/steering_control.dir/src/steering_control/steering_controller.cpp.o CMakeFiles/steering_control.dir/src/steering_control/steering_filter.cpp.o
+/usr/bin/llvm-ranlib-20 libsteering_control.a
